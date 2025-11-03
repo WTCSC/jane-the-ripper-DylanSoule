@@ -86,7 +86,8 @@ flowchart TD
 ## Testing
 **The file can be tested using pytest**
 
-In order to test the file, first make sure you have installed both the [jane_the_ripper.py](./jane_the ripper.py) and the [test_jane_the_ripper.py](./test_jane_the_ripper.py) files, and they are both in the same directory.
+In order to test the file, first make sure you have installed both the [jane_the_ripper.py](./jane_the ripper.py) and the [test_jane_the_ripper.py](./test_jane_the_ripper.py) files, and they are both in the same directory.  
+You also need to have the [hashes.txt](./Testing%20Files/hashes.txt) and the [wordlist.txt](./Testing%20Files/wordlist.txt) files in that same directory for the tests to run correctly
 Then in order to test the file, run the following commands in your terminal
 ```bash
 cd [path to directory file is located]
