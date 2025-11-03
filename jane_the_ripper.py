@@ -1,6 +1,6 @@
 import hashlib
 
-def crack_passwords(hash_path, wordlist_path):
+def crack_passwords(hash_path, wordlist_path, hash_type):
     hash_set = set()
     cracked = {}
     try:
@@ -9,15 +9,18 @@ def crack_passwords(hash_path, wordlist_path):
                 hash_set.add(line.strip('\n'))
     except:
         return "Wrong Path to Hash File, Please Try Again"
+    
     try:
         with open(wordlist_path, 'r') as passwords:
             for line in passwords:
-                encoded_line = hashlib.md5(line.strip('\n').encode()).hexdigest()
+                hasher = hashlib.new(hash_type)
+                hasher.update(line.strip('\n').encode())
+                encoded_line = hasher.hexdigest()
                 if encoded_line in hash_set:
                     cracked[encoded_line] = line.strip('\n')
                     hash_set.remove(encoded_line)
     except:
-        return "Wrong Path to Wordlist, Please Try Again"
+        return "Wrong Path to Wordlist, or hashing algorithm is not supported by hashlib, Please Try Again"
     for h in hash_set:
         cracked[h] = 'Password not found in wordlist'
     return cracked
@@ -26,8 +29,8 @@ def crack_passwords(hash_path, wordlist_path):
 def main():
     hash_path = input("What is the path to the hash list file ")
     wordlist_path = input("What is the path to the wordlist file ")
-    # hash_type = input("What type of hash is used ")
-    got_returned = crack_passwords(hash_path,wordlist_path)
+    hash_type = input("What type of hash is used in the hash file ").lower()
+    got_returned = crack_passwords(hash_path,wordlist_path, hash_type)
     if isinstance(got_returned, str):
         print(got_returned)
     else:
@@ -37,4 +40,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
