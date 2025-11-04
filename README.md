@@ -1,4 +1,4 @@
-# Dylan Soule's Hexorcist
+# Dylan Soule's Jane The Ripper
 
 The jane the ripper python script will attempt to crack the hashes in a hash list you provide, and compare it against all the possible passwords in the wordlist you provide.  
 The script runs in the terminal and allows you to provide paths to the hash and wordlist files, as well as the hashing algorithm that the hash file used
